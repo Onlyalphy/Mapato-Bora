@@ -28,3 +28,29 @@ export const getAIPickInsights = async (pick: StockPick) => {
     return "Unable to generate AI insights at this time. Standard valuation metrics suggest a solid entry.";
   }
 };
+
+export const analyzeFinancialFile = async (base64Data: string, mimeType: string) => {
+  try {
+    const response = await ai.models.generateContent({
+      model: 'gemini-3-flash-preview',
+      contents: {
+        parts: [
+          {
+            inlineData: {
+              data: base64Data,
+              mimeType: mimeType
+            }
+          },
+          {
+            text: "You are a professional NSE financial analyst. Extract the key financial metrics (Revenue, Profit, Net Debt, Dividends) and provide a 'Nyoro-style' quality pass/fail recommendation based on the data. Be concise."
+          }
+        ]
+      }
+    });
+
+    return response.text;
+  } catch (error) {
+    console.error("File Analysis Error:", error);
+    return "Failed to analyze the file. Please ensure it is a valid image or document and try again.";
+  }
+};
