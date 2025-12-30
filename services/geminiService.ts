@@ -2,7 +2,8 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { StockPick } from '../types';
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+// Initialize with a direct reference to process.env.API_KEY as per strict developer guidelines
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export const getAIPickInsights = async (pick: StockPick) => {
   try {
@@ -22,6 +23,7 @@ export const getAIPickInsights = async (pick: StockPick) => {
       },
     });
 
+    // response.text is a getter property, not a method
     return response.text;
   } catch (error) {
     console.error("AI Insights Error:", error);
@@ -48,6 +50,7 @@ export const analyzeFinancialFile = async (base64Data: string, mimeType: string)
       }
     });
 
+    // response.text is a getter property, not a method
     return response.text;
   } catch (error) {
     console.error("File Analysis Error:", error);
