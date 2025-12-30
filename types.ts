@@ -5,7 +5,8 @@ export enum MarketSector {
   TELECOM = 'Telecommunication',
   AGRICULTURE = 'Agriculture',
   MANUFACTURING = 'Manufacturing',
-  REAL_ESTATE = 'Real Estate'
+  REAL_ESTATE = 'Real Estate',
+  ENERGY = 'Energy & Petroleum'
 }
 
 export interface SectorWeights {
@@ -47,6 +48,8 @@ export interface StockPick {
     explanation: string;
   };
   notes: string;
+  news_headline?: string;
+  recent_sentiment?: 'Positive' | 'Neutral' | 'Negative';
 }
 
 export interface PortfolioMode {
