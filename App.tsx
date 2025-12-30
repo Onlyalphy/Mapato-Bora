@@ -536,7 +536,21 @@ const App: React.FC = () => {
                      </div>
                      <p className="text-sm font-medium text-slate-600 leading-relaxed max-w-2xl">{alert.msg}</p>
                      <div className="mt-6 flex gap-6 items-center">
-                        <button className="text-[10px] font-black uppercase tracking-widest text-slate-900 border-b-2 border-slate-900 pb-1 hover:text-emerald-600 hover:border-emerald-600 transition-all">Detailed Fundamental Check</button>
+                        <button 
+                          onClick={() => {
+                            // Find the stock from MOCK_STOCKS based on alert symbol
+                            const stock = MOCK_STOCKS.find(s => s.symbol === alert.symbol);
+                            if (stock) {
+                              handleStockClick(stock);
+                            } else if (alert.symbol.toLowerCase().includes('sector')) {
+                              // If it's a sector-wide alert, navigate to the sectors page
+                              setActiveTab('sectors');
+                            }
+                          }}
+                          className="text-[10px] font-black uppercase tracking-widest text-slate-900 border-b-2 border-slate-900 pb-1 hover:text-emerald-600 hover:border-emerald-600 transition-all hover:scale-105 active:scale-95"
+                        >
+                          Detailed Fundamental Check
+                        </button>
                         <button className="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-rose-600 transition-all">Dismiss Trigger</button>
                      </div>
                   </div>
