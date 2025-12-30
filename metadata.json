@@ -1,0 +1,5 @@
+{
+  "name": "Mapato Bora - NSE Analytics",
+  "description": "A production-ready financial dashboard for the Nairobi Securities Exchange, featuring tailored sector weights, Nyoro-style value scoring, and Kuza-style low-risk portfolio management.",
+  "requestFramePermissions": []
+}
